@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h2 class="head">{{ item.name }}</h2>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <p><span class="text-info">Description:</span> {{ item.description }}</p>
+            <p><span class="text-info">Category:</span> {{ item.category }}</p>
+            <p><span class="text-info">Brand:</span> {{ item.brand|default:"N/A" }}</p>
+            <p><span class="text-info">Color:</span> {{ item.color|default:"Not specified" }}</p>
+            <p><span class="text-info">Date Found:</span> {{ item.date_found }}</p>
+            <p><span class="text-info">Location:</span> {{ item.location }}</p>
+            <p><span class="text-info">Claimed Status:</span>
+                {% if item.claimed_status %}
+                    <span class="badge badge-success">Claimed</span>
+                {% else %}
+                    <span class="badge badge-danger">Unclaimed</span>
+                {% endif %}
+            </p>
+            <p><span class="text-info">Tags:</span>
+                {% for tag in item.tags.all %}
+                    <span class="badge badge-secondary">{{ tag.name }}</span>
+                {% empty %}
+                    No tags
+                {% endfor %}
+            </p>
+        </li>
+    </ul>
+{% endblock %}
