@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+{% block content %}
+    <div>
+        <h2 class="head">Lost & Found Items</h2>
+        <ul class="list-group">
+            {% for item in items %}
+                <li class="list-group-item">
+                    <h5 class="mb">{{ item.name }}</h5>
+                    <p><span class="text-info">Brand:</span> {{ item.brand }}</p>
+                    <p><span class="text-info">Date Found:</span> {{ item.date_found }}</p>
+                    <p><span class="text-info">Location:</span> {{ item.location }}</p>
+                    <p><span class="text-info">Claimed Status:</span> {{ item.claimed_status }}</p>
+                    <a class="btn btn-primary btn-sm" href="{% url 'item-detail' item.pk %}">More details</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
