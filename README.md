@@ -1,5 +1,6 @@
 clone repository
 git clone https://github.com/azatgainolla026/lost-found.git
+
 cd lostandfound
 
 python -m venv venv #to create venv
