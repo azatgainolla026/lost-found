@@ -12,12 +12,14 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+
+
 class Item(models.Model):
-    name = models.CharField(max_length=50, help_text="Item name")
-    description = models.CharField(max_length=250, help_text="Full description of item")
+    name = models.CharField(max_length=50)
+    description = models.CharField(max_length=250)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    brand = models.TextField(null=True, blank=True)
-    color = models.TextField(null=True, blank=True)
+    brand = models.CharField(null=True, blank=True,max_length=20)
+    color = models.CharField(null=True, blank=True,max_length=20)
     date_found = models.DateField(auto_now_add=True)
     claimed_status = models.BooleanField(default=False)
     location = models.CharField(max_length=255)

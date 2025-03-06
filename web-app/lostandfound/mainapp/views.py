@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
-
+from django.shortcuts import render, get_object_or_404, redirect
+from .forms import ItemForm
+from .forms import SearchForm
 from .models import Category,Item,Tag,ItemTag
 
 def index(request):
@@ -35,7 +36,7 @@ def search_items(request):
         'category': category
     }
 
-    return render(request,'mainapp/search.html',context)
+    return render(request,'mainapp/filter.html',context)
 
 def about(request):
     all_items = Item.objects.count()
@@ -45,4 +46,30 @@ def about(request):
         'unclaimed_items': unclaimed_items
     }
     return render(request, 'mainapp/about.html', context)
+
+
+def search(request):
+    search_text = request.GET.get("search")
+    items = []
+    form = SearchForm(request.GET)
+    if form.is_valid() and len(form.cleaned_data['search'])>=1:
+        search = form.cleaned_data['search']
+        items = Item.objects.filter(name__icontains = search)
+
+    return render(request,'mainapp/search.html',{"form":form,"items":items,"search_text":search_text})
+
+
+
+def report(request):
+    if request.method == "POST":
+        form = ItemForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("all-items")
+        else:
+            print(form.errors)
+    else:
+        form = ItemForm()
+
+    return render(request,'mainapp/report.html',{"form":form})
 

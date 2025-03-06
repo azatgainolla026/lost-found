@@ -6,32 +6,50 @@
     <meta charset="UTF-8">
     <title>Lost&Found</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Source+Sans+Pro&display=swap">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Source+Sans+Pro&display=swap">
     <link rel="stylesheet" href="{% static 'main.css' %}">
 </head>
 <body>
-    <aside>
-        <img src="{% static 'logo.png' %}" alt="logo">
-        <span class="logo">Lost&Found</span>
-        <br>
-        <ul>
-            <a href="{% url 'home' %}"><li><i class="fa fa-home"></i>Home</li></a>
-            <a href="{% url 'all-items' %}"><li><i class="fa fa-list"></i>All Items</li></a>
-            <a href="{% url 'unclaimed-items' %}"><li><i class="fa fa-list"></i>Unclaimed Items</li></a>
-            <a href="{% url 'search' %}"><li><i class="fa fa-search" aria-hidden="true"></i>Search Items By Category</li></a>
-            <a href="{% url 'about' %}"><li><i class="fa fa-user"></i>About</li></a>
-        </ul>
-    </aside>
-    <main>
-        {% block content %}
-            <div class="main">
-                <h1>Welcome to Lost & Found</h1>
-                <p>Find your lost items or report something you've found.</p>
-                <a href="{% url 'all-items' %}" class="btn btn-warning">View All Items</a>
-            </div>
-        {% endblock %}
-    </main>
+<aside>
+    <img src="{% static 'logo.png' %}" alt="logo">
+    <span class="logo">Lost&Found</span>
+    <br>
+    <ul>
+        <a href="{% url 'home' %}">
+            <li><i class="fa fa-home"></i>Home</li>
+        </a>
+        <a href="{% url 'all-items' %}">
+            <li><i class="fa fa-list"></i>All Items</li>
+        </a>
+        <a href="{% url 'unclaimed-items' %}">
+            <li><i class="fa fa-list"></i>Unclaimed Items</li>
+        </a>
+        <a href="{% url 'filter' %}">
+            <li><i class="fa fa-search" aria-hidden="true"></i>Search Items By Category</li>
+        </a>
+        <a href="{% url 'search' %}">
+            <li><i class="fa fa-search" aria-hidden="true"></i>Search Items</li>
+        </a>
+        <a href="{% url 'about' %}">
+            <li><i class="fa fa-user"></i>About</li>
+        </a>
+        <a href="{% url 'report' %}">
+            <li><i class="fa fa-telegram"></i>Report Found Item</li>
+        </a>
+    </ul>
+</aside>
+<main>
+    {% block content %}
+        <div class="main">
+            <h1>Welcome to Lost & Found</h1>
+            <p>Find your lost items or report something you've found.</p>
+            <a href="{% url 'all-items' %}" class="btn btn-warning">View All Items</a>
+        </div>
+    {% endblock %}
+</main>
 </body>
 </html>

@@ -1,15 +1,16 @@
 {% extends 'index.html' %}
 
 {% block content %}
-    <h2 class="head">Search For Items</h2>
-    <br>
-    <form>
-        {{ form }}
-        <br>
-        <button type="submit" class="btn btn-warning">Search</button>
-    </form>
-    {% if items %}
-        <ul class="list-group">
+    <h2 class="head">Search Items</h2>
+    <div class="filter">
+        <a href="?category=" class="btn btn-primary {% if not category %}active{% endif %}">All Items</a>
+        {% for category in categories %}
+            <a href="?category={{ category.name }}" class="btn btn-primary {% if category.name == category %}active{% endif %}">
+                {{ category.name }}
+            </a>
+        {% endfor %}
+    </div>
+    <ul class="list-group">
         {% for item in items %}
             <li class="list-group-item">
                 <p><span class="text-info">Name:</span> {{ item.name }}</p>
@@ -20,8 +21,4 @@
             </li>
         {% endfor %}
     </ul>
-    {% else %}
-        <h5 class="head">No Items Found</h5>
-    {% endif %}
 {% endblock %}
-
